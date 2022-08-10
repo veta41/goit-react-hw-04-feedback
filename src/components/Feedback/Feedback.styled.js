@@ -18,12 +18,16 @@ padding-right: ${p => p.theme.space[4]}px;
 border: ${p => p.theme.borders.none};
 border-radius: ${p => p.theme.radii.sm};
 background-color: ${p => p.theme.colors.primary};
-color: ${p => p.theme.colors.write};
+color: ${p => p.theme.colors.white};
+text-transform: uppercase;
+transform: scale(0.95);
+transition: transform 500ms ease 0s;
 cursor: pointer;
 
 :hover,
 :focus{
   background-color: ${p => p.theme.colors.secondary};
+  transform: scale(1);
 }
 
 `

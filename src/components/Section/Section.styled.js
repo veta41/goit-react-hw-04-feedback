@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Sections = styled.section`
-margin:  ${p => p.theme.space[0]}px;
-
+/* margin:  ${p => p.theme.space[0]}px; */
 width: 600px;
 `;
 

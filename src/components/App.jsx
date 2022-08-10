@@ -1,10 +1,11 @@
 import { GlobalStyle } from './GlobalStyle';
-// import { Box } from './Box';
+
+ import { Box } from './Box';
 import { Component } from 'react';
 import Section from './Section/Section';
 import FeedbackOptions from './Feedback/FeedbackOptions';
-import Statistics from './Statistics/Statistics';
 import Notification from './Notification/Notification';
+import Statistics from './Statistics/Statistics';
 
  
 
@@ -36,25 +37,36 @@ import Notification from './Notification/Notification';
     const total = good + neutral + bad;
 
   return (
-      <Section title="Please leave feedback">
-        <FeedbackOptions options={buttons} onLeaveFeedback={onLeaveFeedback} />
-        <h2>Statistics</h2>
+      <Box 
+      display = 'flex' 
+      flexDirection = 'column'
+      flexWrap = 'wrap'
+      alignContent = 'center'
+      >
+      <Section title={"Please leave feedback"}>
+      <FeedbackOptions
+        options={buttons}
+        onLeaveFeedback={onLeaveFeedback} />
+
+    </Section>
+    <Section title={"Statistics"}>
         {total ? (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
             total={total}
-            positivePercentage={countPositiveFeedbackPercentage()}
-          />
+            positivePercentage={countPositiveFeedbackPercentage()} />
         ) : (
           <Notification
-            message="There is no feedback"
-            text={'No feedback given'}
-          />
+             message = "There is no feedback!"
+            
+            />
         )}
-        <GlobalStyle/>
       </Section>
+      <GlobalStyle />
+      </Box>
+      
       
     );
   }

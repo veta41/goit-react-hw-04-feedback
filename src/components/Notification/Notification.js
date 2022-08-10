@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import { NotificText } from './Notification.styled';
 
-export default function Notification({ text }) {
-  return <p>{text}</p>;
+export default function Notification({ message }) {
+  return <NotificText>{message}</NotificText>;
 }
 
 Notification.prototype = {
-  text: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
 };

@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
-import { Title } from './Section.styled';
+import { Sections, Title } from './Section.styled';
 
-export default function Section({ children }) {
+export default function Section({ title, children }) {
   return (
-    <section>
-      <Title>Please leave feedback</Title>
+    <Sections>
+      <Title>{title}</Title>
       {children}
-    </section>
+    </Sections>
   );
 }
 
-Section.propTypes = { children: PropTypes.arrayOf(PropTypes.object) };
+Section.propTypes = { 
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+};

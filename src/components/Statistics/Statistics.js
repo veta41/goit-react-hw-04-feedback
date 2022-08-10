@@ -1,5 +1,6 @@
+import { Box } from 'components/Box';
 import PropTypes from 'prop-types';
-import { StatisticSection } from './Statistics.styled';
+import { Item, StatisticSection } from './Statistics.styled';
 
 export default function Statistics({
   good,
@@ -7,19 +8,24 @@ export default function Statistics({
   bad,
   total,
   positivePercentage,
-  title,
+  
 }) {
   return (
     <StatisticSection>
-       <h1>{title}</h1>
+       
       {
-        <ul>
-          <li>Good: {good}</li>
-          <li>Neutral: {neutral}</li>
-          <li>Bad: {bad}</li>
-          <li>Total: {total}</li>
-          <li>Positive feedback: {positivePercentage}%</li>
-        </ul>
+        <Box as = 'ul'
+        display = 'flex'
+        flexDirection = 'column'
+        alignItems = 'flex-start'
+        justifyContent = 'center'
+        >
+          <Item>Good: {good}</Item>
+          <Item>Neutral: {neutral}</Item>
+          <Item>Bad: {bad}</Item>
+          <Item>Total: {total}</Item>
+          <Item>Positive feedback: {positivePercentage}%</Item>
+        </Box>
       }
     </StatisticSection>
   );
@@ -31,5 +37,5 @@ Statistics.prototype = {
   bad: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   positivePercentage: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  
 };
