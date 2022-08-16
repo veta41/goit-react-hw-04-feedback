@@ -22,9 +22,9 @@ import Statistics from './Statistics/Statistics';
     return Math.round((good / (good + neutral + bad)) * 100);
   };
 
-  onLeaveFeedback = evt => {
+  countTotalFeedback = e => {
     
-    const element = evt.target.innerText.toLowerCase();
+    const element = e.target.innerText.toLowerCase();
     this.setState(prevState => ({
       [element]: prevState[element] + 1,
     }));
@@ -32,7 +32,7 @@ import Statistics from './Statistics/Statistics';
 
   render() {
     const { good, neutral, bad } = this.state;
-    const { state, onLeaveFeedback, countPositiveFeedbackPercentage } = this;
+    const { state, countTotalFeedback, countPositiveFeedbackPercentage } = this;
     const buttons = Object.keys(state);
     const total = good + neutral + bad;
 
@@ -46,7 +46,7 @@ import Statistics from './Statistics/Statistics';
       <Section title={"Please leave feedback"}>
       <FeedbackOptions
         options={buttons}
-        onLeaveFeedback={onLeaveFeedback} />
+        onLeaveFeedback={countTotalFeedback} />
 
     </Section>
     <Section title={"Statistics"}>
