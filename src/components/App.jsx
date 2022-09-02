@@ -1,40 +1,59 @@
 import { GlobalStyle } from './GlobalStyle';
+import { useState } from 'react';
+import { Box } from './Box';
 
- import { Box } from './Box';
-import { Component } from 'react';
 import Section from './Section/Section';
 import FeedbackOptions from './Feedback/FeedbackOptions';
 import Notification from './Notification/Notification';
 import Statistics from './Statistics/Statistics';
 
+
  
 
- export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+ export function App () {
+
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const state = {
+    good,
+    neutral,
+    bad,
   };
 
-  countPositiveFeedbackPercentage = () => {
-    const { good, neutral, bad } = this.state;
+  const buttons = Object.keys(state)
 
-    return Math.round((good / (good + neutral + bad)) * 100);
+  const countTotalFeedback = () => {
+    return good + neutral + bad;
   };
 
-  countTotalFeedback = e => {
-    
-    const element = e.target.innerText.toLowerCase();
-    this.setState(prevState => ({
-      [element]: prevState[element] + 1,
-    }));
+  const total = countTotalFeedback();
+
+  const countPositiveFeedbackPercentage = () => {
+
+    return Math.round((good / total) * 100);
   };
 
-  render() {
-    const { good, neutral, bad } = this.state;
-    const { state, countTotalFeedback, countPositiveFeedbackPercentage } = this;
-    const buttons = Object.keys(state);
-    const total = good + neutral + bad;
+  const leaveFeedback = item => {
+    switch (item) {
+      case 'good':
+        setGood(good + 1);
+        break;
+
+      case 'neutral':
+        setNeutral(neutral + 1);
+        break;
+
+      case 'bad':
+        setBad(bad + 1);
+        break;
+
+      default:
+        return;
+    }
+  };
+  
 
   return (
       <Box 
@@ -46,7 +65,7 @@ import Statistics from './Statistics/Statistics';
       <Section title={"Please leave feedback"}>
       <FeedbackOptions
         options={buttons}
-        onLeaveFeedback={countTotalFeedback} />
+        onLeaveFeedback={leaveFeedback} />
 
     </Section>
     <Section title={"Statistics"}>
@@ -70,4 +89,4 @@ import Statistics from './Statistics/Statistics';
       
     );
   }
-}
+

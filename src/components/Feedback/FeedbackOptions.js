@@ -2,16 +2,13 @@ import PropTypes from 'prop-types';
 import { Button, ButtonWrapper } from './Feedback.styled';
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
-  
-
   return (
     <ButtonWrapper>
       {options.map((option, index) => (
         <Button
           key={index}
           type="button"
-          
-          onClick={onLeaveFeedback}
+          onClick={() => onLeaveFeedback(option)}
         >
           {option}
         </Button>
